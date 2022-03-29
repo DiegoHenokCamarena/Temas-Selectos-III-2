@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class ps4Controller : MonoBehaviour
 {
     GameObject mov = null;
+    float rot = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,7 @@ public class ps4Controller : MonoBehaviour
             Debug.Log(Gamepad.all[i].name);
         }
         
-        mov  = GameObject.Find("Main Camera");
+        mov  = GameObject.Find("View");
     }
 
     // Update is called once per frame
@@ -34,7 +35,14 @@ public class ps4Controller : MonoBehaviour
 
             if (Gamepad.all[0].rightStick.right.isPressed)
             {
-                mov.transform.position += Vector3.right * Time.deltaTime * 500f;
+                rot = (float)(rot+0.01);
+                mov.transform.Rotate(0.0f, rot, 0.0f, Space.World);
+            }
+
+            if (Gamepad.all[0].rightStick.left.isPressed)
+            {
+                rot = (float)(rot-0.01);
+                mov.transform.Rotate(0.0f, rot, 0.0f, Space.World);
             }
         }
             
