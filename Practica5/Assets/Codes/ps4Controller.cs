@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ps4Controller : MonoBehaviour
 {
     GameObject mov = null;
+    
     float rot = 0.0f;
+    float vel = 100.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +19,7 @@ public class ps4Controller : MonoBehaviour
             Debug.Log(Gamepad.all[i].name);
         }
         
-        mov  = GameObject.Find("View");
+        mov  = GameObject.Find("Grid");
     }
 
     // Update is called once per frame
@@ -25,25 +29,29 @@ public class ps4Controller : MonoBehaviour
         {
             if (Gamepad.all[0].leftStick.up.isPressed)
             {
-                mov.transform.position += Vector3.left * Time.deltaTime * 500f;
+                mov.transform.position += transform.forward * Time.deltaTime * vel;
             }
                 
             if (Gamepad.all[0].leftStick.down.isPressed)
             {
-                mov.transform.position += Vector3.right * Time.deltaTime * 500f;
+                mov.transform.position -= transform.forward * Time.deltaTime * vel;
             }
 
             if (Gamepad.all[0].rightStick.right.isPressed)
             {
-                rot = (float)(rot+0.01);
+                rot = (float)(rot+1);
                 mov.transform.Rotate(0.0f, rot, 0.0f, Space.World);
             }
+            rot = 0.0f;
 
             if (Gamepad.all[0].rightStick.left.isPressed)
             {
-                rot = (float)(rot-0.01);
+                rot = (float)(rot-1);
                 mov.transform.Rotate(0.0f, rot, 0.0f, Space.World);
             }
+
+            
+            
         }
             
     }
