@@ -7,9 +7,10 @@ using UnityEngine.UI;
 public class ps4Controller : MonoBehaviour
 {
     GameObject mov = null;
-    
+    public Rigidbody Cube;
     float rot = 0.0f;
-    float vel = 100.0f;
+    float vel = 16.0f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,8 @@ public class ps4Controller : MonoBehaviour
             Debug.Log(Gamepad.all[i].name);
         }
         
-        mov  = GameObject.Find("Grid");
+        mov  = GameObject.Find("Cube");
+        Cube = mov.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -29,12 +31,12 @@ public class ps4Controller : MonoBehaviour
         {
             if (Gamepad.all[0].leftStick.up.isPressed)
             {
-                mov.transform.position += transform.forward * Time.deltaTime * vel;
+                Cube.AddForce(transform.forward * vel);
             }
                 
             if (Gamepad.all[0].leftStick.down.isPressed)
             {
-                mov.transform.position -= transform.forward * Time.deltaTime * vel;
+                Cube.AddForce(-transform.forward * vel);
             }
 
             if (Gamepad.all[0].rightStick.right.isPressed)
