@@ -22,7 +22,7 @@ public class TimerController : MonoBehaviour
 
     public void Start()
     {
-        timeCounter.text = "Time: 00:00.00";
+        //timeCounter.text = "Time: 00:00.00";
         //timerGoing = true;
         
     }
@@ -37,7 +37,8 @@ public class TimerController : MonoBehaviour
 
     public void EndTimer()
     {
-        timerGoing = true;
+        timeCounter.text = "Time: 00:00.00";
+        timerGoing = false;
     }
 
     private IEnumerator UpdateTimer()

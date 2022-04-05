@@ -9,7 +9,7 @@ public class ps4Controller : MonoBehaviour
     GameObject mov = null;
     public Rigidbody Cube;
     float rot = 0.0f;
-    float vel = 16.0f;
+    float vel = 12.0f;
     
 
     // Start is called before the first frame update
