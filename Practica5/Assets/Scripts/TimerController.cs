@@ -57,4 +57,14 @@ public class TimerController : MonoBehaviour
     void Update(){
         UpdateTimer();
     }
+
+    void OnCollisionEnter(Collision col){
+        if(col.gameObject.name == "StartButton"){
+            BeginTimer();
+        }
+        if(col.gameObject.name == "FinishButton"){
+            EndTimer();
+        }
+    }
+
 }
