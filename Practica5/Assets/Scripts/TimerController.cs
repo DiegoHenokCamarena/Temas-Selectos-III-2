@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class TimerController : MonoBehaviour
 {
     public static TimerController instance;
-
+    
     public Text timeCounter;
-
+    
     private TimeSpan timePlaying;
     private bool timerGoing = false;
 
@@ -22,7 +22,7 @@ public class TimerController : MonoBehaviour
 
     public void Start()
     {
-        //timeCounter.text = "Time: 00:00.00";
+        timeCounter.text = "Time: 10:00.00";
         //timerGoing = true;
         
     }
@@ -59,6 +59,15 @@ public class TimerController : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision col){
+        if(col.gameObject.name == "StartButton"){
+            BeginTimer();
+        }
+        if(col.gameObject.name == "FinishButton"){
+            EndTimer();
+        }
+    }
+
+    private void OnTriggerEnter(Collider col){
         if(col.gameObject.name == "StartButton"){
             BeginTimer();
         }
